@@ -41,7 +41,7 @@ if(turno == 1){
     printf("digite o hora e dua idade que eu vou te dar uns conselhos personalizados");
     scanf("%d %d",&horario,&idade);
 
-    tarefa_por_turno(classificar_turno(horario),idade);
+    tarefa_por_turno(2,19);
 
     return 0;
 }
