@@ -15,17 +15,16 @@ int main(void)
     float n1, n2;
     int qtdAlunos, contador = 0;
 
-    printf("quantos alunos tem na turma?");
+    printf("\nquantos alunos tem na turma?");
     scanf("%d", &qtdAlunos);
 
-    while (qtdAlunos > 0)
+    while (qtdAlunos > contador)
     {
         contador++;
-        qtdAlunos--;
-        printf("qual a nota1 e nota2?");
+        printf("\nqual a nota1 e nota2?");
         scanf("%f %f", &n1, &n2);
 
-        printf("a media do %f° aluno eh:", calcMedia(n1, n2));
+        printf("\na media do %d° aluno eh:%.2f", contador, calcMedia(n1, n2));
     }
     return 0;
 }
