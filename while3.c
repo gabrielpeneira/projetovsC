@@ -2,35 +2,40 @@
 
 /*Faça um programa que dado um número inteiro positivo digitado pelo usuário imprima o próximo número primo.*/
 
-int main(void) {
+int main(void)
+{
 
-  int numero, contador = 1,testeprimo, primo=0, resultado, contadorPrimo=0, contadorComposto=0;
+  int numero, contador = 0, testeprimo, primo = 0, resultado, contadorPrimo = 0, contadorComposto = 0;
 
   printf("escreva um nunero inteiro");
-  scanf("%i",&numero);
+  scanf("%i", &numero);
 
   numero = testeprimo;
-  while(primo==1){
+  while (primo != 1)
+  {
 
-   testeprimo++ ;
+    testeprimo++;
 
-    while(contador<testeprimo){
-
+    while (contador < testeprimo)
+    {
+      contador++;
+      resultado = 0;
       resultado = testeprimo % contador;
 
-      if(resultado==testeprimo){
+      if (resultado == testeprimo && contador != 1 && contador != testeprimo)
+      {
 
         contadorPrimo++;
       }
-      contador++;
     }
 
-    if(contadorPrimo==testeprimo-2){
+    if (contadorPrimo == (testeprimo - 2))
+    {
 
       primo++;
     }
   }
 
-  printf("%d eh o primeiro primo apos %d",testeprimo,numero);
+  printf("%d eh o primeiro primo apos %d", testeprimo, numero);
   return 0;
 }
