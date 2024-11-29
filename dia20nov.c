@@ -1,45 +1,53 @@
 #include <stdio.h>
 
 #define TAM 10
+
 void zeraVetor(int *v, int qt)
 {
-    int i;
-    for (i = 0; i < qt; i++)
+    for (int i = 0; i < qt; i++)
     {
         v[i] = 0;
     }
-    return;
 }
+
 void preencheVetor(int *v, int qt)
 {
-    int ind;
-    for (ind = 0; ind < qt; ind++)
+    for (int ind = 0; ind < qt; ind++)
     {
-        printf("\ncandidato a rei da escola numero:%d, digite um numero de sua escolha:\n", ind + 1);
+        printf("Candidato a rei da escola número %d, digite um número de sua escolha: ", ind + 1);
         scanf("%d", &v[ind]);
     }
-    return;
 }
+
 void votacao(int qtdAlunos, int *candidato, int *contaVotos, int qtd)
 {
     int voto;
     for (int i = 0; i < qtdAlunos; i++)
     {
-        printf("\nqual o voto do aluno %i?\n", i + 1);
-        scanf("%i", &voto);
-        for (int j = 0; j < TAM; j++)
+        printf("\nQual o voto do aluno %d? ", i + 1);
+        scanf("%d", &voto);
+
+        int votoValido = 0;
+        for (int j = 0; j < qtd; j++)
         {
             if (voto == candidato[j])
             {
                 contaVotos[j]++;
+                votoValido = 1;
+                break;
             }
+        }
+        if (!votoValido)
+        {
+            printf("Voto inválido! O número não corresponde a nenhum candidato.\n");
         }
     }
 }
-int encontraMaior(int *candidato, int *contaVotos, int qtd)
+
+int encontraMaior(int *contaVotos, int qtd)
 {
     int maiorNum = 0, indice = 0;
-    for (int k = 0; k < TAM; k++)
+    for (int k = 0; k < qtd; k++)
     {
         if (contaVotos[k] > maiorNum)
         {
@@ -49,6 +57,7 @@ int encontraMaior(int *candidato, int *contaVotos, int qtd)
     }
     return indice;
 }
+
 int main(void)
 {
     int candRei[TAM];
@@ -56,27 +65,29 @@ int main(void)
     int contaVotos[TAM];
     int qtdAlunos, indice;
 
-    preencheVetor(candRei, TAM);
-
-    printf("\nquntos alunos tem na escola?\n");
-    scanf("%i", &qtdAlunos);
+    printf("\nQuantos alunos tem na escola? ");
+    scanf("%d", &qtdAlunos);
 
     zeraVetor(contaVotos, TAM);
 
-    printf("\npara rainha do baile:\n");
+    printf("\nPara rainha do baile:\n");
     votacao(qtdAlunos, cand, contaVotos, TAM);
 
-    indice = encontraMaior(cand, contaVotos, TAM);
+    indice = encontraMaior(contaVotos, TAM);
 
-    printf("\na rainha do baile eh a candidata numero: %i\n", cand[indice]);
+    printf("\nA rainha do baile é a candidata número: %d\n", cand[indice]);
 
     zeraVetor(contaVotos, TAM);
 
-    printf("\npara rei do baile:\n");
+    printf("\nPreenchendo candidatos a rei:\n");
+    preencheVetor(candRei, TAM);
+
+    printf("\nPara rei do baile:\n");
     votacao(qtdAlunos, candRei, contaVotos, TAM);
 
-    indice = encontraMaior(candRei, contaVotos, TAM);
+    indice = encontraMaior(contaVotos, TAM);
 
-    printf("\no rei do baile eh o candidato numero: %i\n", candRei[indice]);
+    printf("\nO rei do baile é o candidato número: %d\n", candRei[indice]);
+
     return 0;
 }
